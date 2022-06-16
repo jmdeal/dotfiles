@@ -5,7 +5,7 @@
 export PATH=/opt/homebrew/bin:$HOME/go/bin:$PATH
 
 # TMUX configuration
-export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_AUTOSTART=$([[ "$TERM" = "alacritty" ]] && echo true || echo false)
 export ZSH_TMUX_FIXTERM=false
 export TERM="xterm-256color"
 
