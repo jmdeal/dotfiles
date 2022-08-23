@@ -9,11 +9,6 @@ export ZSH_TMUX_AUTOSTART=$([[ "$TERM" = "alacritty" ]] && echo true || echo fal
 export ZSH_TMUX_FIXTERM=false
 export TERM="xterm-256color"
 
-# Run machine specific scripts
-for file in $HOME/.zsh/commands/*.sh; do
-    source $file
-done
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -41,14 +36,6 @@ prompt pure
 ################################################################################
 
 alias ls=exa
-
-alias auth='kinit && mwinit'
-
-alias k=kubectl
-alias kaf='kubectl apply -f'
-
-yq() {
-    docker run --rm -i -v "${PWD}":/workdir mikefarah/yq "$@"
-}
+alias nv=nvim
 
 alias accel-control='defaults write .GlobalPreferences com.apple.mouse.scaling'
