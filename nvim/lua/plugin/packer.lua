@@ -119,9 +119,6 @@ return require('packer').startup(function()
         end,
     }
 
-    -- minimap
-    use 'wfxr/minimap.vim'
-
     -- TODO support
     use {
         'folke/todo-comments.nvim',
