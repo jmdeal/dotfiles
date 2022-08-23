@@ -47,3 +47,10 @@ map('n', '<leader>fg', ':Telescope live_grep<CR>', default_opts)    -- symbol se
 map('n', '<leader>fb', ':Telescope buffers<CR>', default_opts)      -- open buffer list
 map('n', '<leader>fh', ':Telescope help_tags<CR>', default_opts)    -- help menu
 map('n', '<leader>fs', ':Telescope sessions<CR>', default_opts)     -- sessions menu
+map('n', '<leader>ft', ":TodoTelescope<CR>", default_opts)          -- TODOs
+
+-- trouble
+map('n', '<leader>t', ':TroubleToggle<CR>', default_opts)
+
+-- diffview
+map('n', '<leader>dv', ':DiffviewOpen<CR>', default_opts)

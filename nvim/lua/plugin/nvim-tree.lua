@@ -5,22 +5,13 @@
 -- Plugin: nvim-tree
 -- https://github.com/kyazdani42/nvim-tree.lua
 
-local g = vim.g
-
-g.nvim_tree_width_allow_resize = 1
--- g.nvim_tree_show_icons = {
---     git = 1,
---     folders = 1,
---     files = 1,
--- }
--- g.nvim_tree_icons = {
---     default = "‣ "
--- }
+vim.g.nvim_tree_width_allow_resize = true
 
 require('nvim-tree').setup {
     actions = {
         open_file = {
             quit_on_open = false,
+            resize_window = true,
             window_picker = {
                 enable = false,
             },
@@ -34,7 +25,7 @@ require('nvim-tree').setup {
         enable = true,
         ignore = true,
     },
-    open_on_setup = false,
+    open_on_setup = true,
     renderer = {
         highlight_git = true,
         highlight_opened_files = 'name',
@@ -56,6 +47,5 @@ require('nvim-tree').setup {
     update_cwd = true,
     view = {
         width = 32,
-        auto_resize = true,
     },
 }

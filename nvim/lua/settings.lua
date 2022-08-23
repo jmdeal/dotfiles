@@ -30,12 +30,18 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.wrap = false
 
+-- highlight current line
+cmd [[set cursorline]]
+
 -- remove whitespace on save
 cmd [[au BufWritePre * :%s/\s\+$//e]]
 
 --------------------------------------------------------------------------------
 -- Colorscheme
 --------------------------------------------------------------------------------
+g.nord_cursor_line_number_background = true
+g.nord_contrast = true
+g.nord_italic = false
 cmd [[colorscheme nord]]
 opt.termguicolors = true
 
