@@ -5,8 +5,6 @@
 -- Plugin: nvim-lspconfig
 -- https://github.com/neovim/nvim-lspconfig
 
-local nvim_lsp = require('lspconfig')
-
 -- Add additional capablilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
@@ -38,7 +36,7 @@ local on_attach = function(client, bufnr)
 
     buf_set_keymap('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
     buf_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
@@ -52,7 +50,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    buf_set_keymap('n', '<F2>', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 -- Language servers
@@ -66,55 +64,22 @@ local default_config = {
     }
 }
 
+local lspconfig = require('lspconfig')
+
+-- Configure mason for managing language server installations
+require('mason').setup()
+require('mason-lspconfig').setup {
+    ensure_installed = {'rust-analyzer', 'clangd'}
+}
+
+-- set default configuration
+lspconfig.util.default_config = vim.tbl_deep_extend('force', lspconfig.util.default_config, default_config)
+
+-- note: rust-analyzer handled by the rust-tools plugin
 local servers = {
-    -- clangd = {},
-    pyright = {},
-    -- cmake = {},
-    -- rust_analyzer = {},
-    -- svls = {},
-    gopls = {
-        cmd = {'gopls', '--remote=auto'},
-        settings = {
-            gopls = {
-                analyses = {
-                    unusedparams = true,
-                },
-                staticcheck = true,
-            },
-        },
-    },
+    clangd = {},
 }
 
 for server, config in pairs(servers) do
-    nvim_lsp[server].setup(vim.tbl_deep_extend('force', default_config, config))
-end
-
-function goimports(timeout_ms)
-    local context = { only = { "source.organizeImports" } }
-    vim.validate { context = { context, "t", true } }
-
-    local params = vim.lsp.util.make_range_params()
-    params.context = context
-
-    -- See the implementation of the textDocument/codeAction callback
-    -- (lua/vim/lsp/handler.lua) for how to do this properly.
-    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-    if not result or next(result) == nil then return end
-    local actions = result[1].result
-    if not actions then return end
-    local action = actions[1]
-
-    -- textDocument/codeAction can return either Command[] or CodeAction[]. If it
-    -- is a CodeAction, it can have either an edit, a command or both. Edits
-    -- should be executed first.
-    if action.edit or type(action.command) == "table" then
-        if action.edit then
-            vim.lsp.util.apply_workspace_edit(action.edit)
-        end
-        if type(action.command) == "table" then
-            vim.lsp.buf.execute_command(action.command)
-        end
-    else
-        vim.lsp.buf.execute_command(action)
-    end
+    lspconfig[server].setup(vim.tbl_deep_extend('force', default_config, config))
 end

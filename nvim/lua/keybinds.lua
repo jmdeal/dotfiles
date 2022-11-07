@@ -50,7 +50,10 @@ map('n', '<leader>fs', ':Telescope sessions<CR>', default_opts)     -- sessions 
 map('n', '<leader>ft', ":TodoTelescope<CR>", default_opts)          -- TODOs
 
 -- trouble
-map('n', '<leader>t', ':TroubleToggle<CR>', default_opts)
+map('n', '<F3>', ':TroubleToggle<CR>', default_opts)
 
 -- diffview
 map('n', '<leader>dv', ':DiffviewOpen<CR>', default_opts)
+
+-- vista
+map('n', '<F4>', ':Vista!!<CR>', default_opts)

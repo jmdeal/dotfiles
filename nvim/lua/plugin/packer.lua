@@ -58,20 +58,9 @@ return require('packer').startup(function()
     use 'nvim-treesitter/nvim-treesitter'
     use 'm-demare/hlargs.nvim'
 
-    -- mason (LSP manager)
-    use {
-        'williamboman/mason.nvim',
-        config = function()
-            require('mason').setup()
-        end
-    }
-
-    use {
-        'williamboman/mason-lspconfig.nvim',
-        config = function()
-            require('mason-lspconfig').setup()
-        end
-    }
+    -- mason (language server manager)
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
 
     -- language server interface
     use 'neovim/nvim-lspconfig'
@@ -149,5 +138,7 @@ return require('packer').startup(function()
             }
         end
     }
+
+    use 'liuchengxu/vista.vim'
 
 end)

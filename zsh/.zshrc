@@ -2,7 +2,7 @@
 ##                               ENV Variables                                ##
 ################################################################################
 
-export PATH=/opt/homebrew/bin:$HOME/go/bin:$PATH
+export PATH=/opt/homebrew/bin:$HOME/go/bin:$HOME/bin:$PATH
 
 # TMUX configuration
 export ZSH_TMUX_AUTOSTART=$([[ "$TERM" = "alacritty" ]] && echo true || echo false)

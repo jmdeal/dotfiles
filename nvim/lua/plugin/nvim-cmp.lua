@@ -18,7 +18,7 @@ cmp.setup {
 
     -- completion settings
     completion = {
-        autocomplete = false,
+        autocomplete = true,
         completeopt = 'menu,menuone,noselect'
     },
 
@@ -61,7 +61,7 @@ cmp.setup {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
-        { name = 'buffer' },
+        -- { name = 'buffer' },
     },
     window = {
         completion = cmp.config.window.bordered(),

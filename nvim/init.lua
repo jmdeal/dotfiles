@@ -7,6 +7,7 @@
 --------------------------------------------------------------------------------
 require('settings')
 require('keybinds')
+require('syntax')
 require('plugin.packer')
 require('plugin.nvim-cmp')
 require('plugin.nvim-lspconfig')
