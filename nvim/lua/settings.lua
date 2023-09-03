@@ -14,7 +14,7 @@ local opt = vim.opt
 --------------------------------------------------------------------------------
 -- General
 --------------------------------------------------------------------------------
-g.mapleader = ','
+g.mapleader = ' '
 opt.mouse = 'a'
 opt.clipboard = 'unnamedplus'
 opt.swapfile = false
@@ -39,10 +39,6 @@ cmd [[au BufWritePre * :%s/\s\+$//e]]
 --------------------------------------------------------------------------------
 -- Colorscheme
 --------------------------------------------------------------------------------
-g.nord_cursor_line_number_background = true
-g.nord_contrast = true
-g.nord_italic = false
-cmd [[colorscheme nord]]
 opt.termguicolors = true
 
 --------------------------------------------------------------------------------
@@ -55,3 +51,4 @@ opt.smartindent = true
 
 -- don't auto-comment new lines
 cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
+

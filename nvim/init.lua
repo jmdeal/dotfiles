@@ -2,15 +2,13 @@
 -- Author: Jason Deal
 -- Neovim init file
 
---------------------------------------------------------------------------------
--- Import Lua modules
---------------------------------------------------------------------------------
+require('plugins')
 require('settings')
 require('keybinds')
-require('syntax')
-require('plugin.packer')
-require('plugin.nvim-cmp')
-require('plugin.nvim-lspconfig')
-require('plugin.nvim-tree')
-require('plugin.nvim-treesitter')
-require('plugin.rust-tools')
+
+-- Plugin Configs
+require('plugins.telescope')
+require('plugins.treesitter')
+require('plugins.lsp')
+require('plugins.harpoon')
+
